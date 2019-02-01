@@ -8,7 +8,7 @@ window.onload = function(e) {
   var quoteButton = document.getElementById('quote-button');
 
   quoteButton.addEventListener('click', e => {
-    fetch('https://zen.github.com')
+    fetch('https://api.github.com/zen')
       .then(response => response.json())
       .then(responseData => {
         quoteBox.innerHTML = `<blockquote><q>${responseData}</q></blockquote>`;
