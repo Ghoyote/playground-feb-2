@@ -11,4 +11,7 @@ window.onload = function (e) {
   var hideButton = document.getElementById('hide-button');
   var guess = document.getElementById('guess');
   var guessButton = document.getElementById('guess-button');
+
+  var ageInput = document.getElementById('myAge');
+  var checkVoter = document.getElementById('check-voter');
 };
