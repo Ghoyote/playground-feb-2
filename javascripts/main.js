@@ -1,4 +1,4 @@
-window.onload = function(e) {
+window.onload = function (e) {
   var startPoint = document.getElementById('myVal');
 
   var add = document.getElementById('add');
@@ -6,23 +6,43 @@ window.onload = function(e) {
 
   var quoteBox = document.getElementById('quote-box');
   var quoteButton = document.getElementById('quote-button');
-  var quoteInput = document.getElementById('quote-input');
-  var nameInput = document.getElementById('name-input');
-  var magicButton = document.getElementById('magic-button');
-  quoteButton.addEventListener('click', e => {
+  // var quoteInput = document.getElementById('quote-input');
+  // var nameInput = document.getElementById('name-input');
+  // var magicButton = document.getElementById('magic-button');
+
+  var masterNumber = document.getElementById('master-number');
+  var hideButton = document.getElementById('hide-button');
+  var guess = document.getElementById('guess');
+  var guessButton = document.getElementById('guess-button');
+
+  quoteButton.addEventListener('click', (e) => {
     fetch('http://api.github.com/zen')
-      .then(response => {
+      .then((response) => {
         return response.text();
       })
-      .then(responseData => {
+      .then((responseData) => {
         console.log(responseData);
         quoteBox.innerHTML = `<blockquote><q>${responseData}</q></blockquote>`;
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   });
-  magicButton.addEventListener('click', e => {
+  hideButton.addEventListener('click', (e) => {
+    var state = masterNumber.style.visibility;
+    if (state == 'hidden') state = 'visible';
+    else state = 'hidden';
+    masterNumber.style.visibility = state;
+  });
+  guessButton.addEventListener('click', (e) => {
+    var guessNumber = Number(guess.value);
+    var original = Number(masterNumber.value);
+    // if
+    if (guessNumber == original) alert('Congrats, you guessed right');
+    else alert('Boo... Try again ;)');
+  });
+  /*
+  magicButton.addEventListener('click', (e) => {
     var quote = quoteInput.value;
     var name = nameInput.value;
     if (quote.length < 3 || name.length < 2)
@@ -31,23 +51,24 @@ window.onload = function(e) {
       method: 'POST',
       body: {
         quote: quote,
-        username: name
-      }
+        username: name,
+      },
     })
-      .then(function(response) {
+      .then(function (response) {
         return response.json();
       })
-      .then(function(responseData) {
+      .then(function (responseData) {
         console.log(responseData);
       });
   });
-  add.addEventListener('click', e => {
+  */
+  add.addEventListener('click', (e) => {
     var startVal = Number(startPoint.textContent);
     startVal += 1;
     startPoint.textContent = startVal;
   });
 
-  subtract.addEventListener('click', e => {
+  subtract.addEventListener('click', (e) => {
     var startVal = Number(startPoint.textContent);
     startVal -= 1;
     startPoint.textContent = startVal;
